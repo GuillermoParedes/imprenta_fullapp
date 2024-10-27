@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, signal } from '@angular/core';
-import { TableComponent } from 'src/app/shared/components/table/table.component';
 import { ClientsService } from './clients.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [TableComponent],
+  imports: [],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.scss'
 })
