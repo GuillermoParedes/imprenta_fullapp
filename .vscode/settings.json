@@ -8,7 +8,7 @@
     "editor.formatOnSave": true, // Format code on save
     "editor.formatOnPaste": true, // For code on paste
     "editor.fontFamily": "Operator Mono, Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize": 15,
+    "editor.fontSize": 12,
     "editor.fontWeight": "400",
     "editor.lineHeight": 30, // Letter spacing in the characters
     "editor.letterSpacing": 0.5, // Spacing in the lines text

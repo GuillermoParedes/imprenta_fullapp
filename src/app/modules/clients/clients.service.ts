@@ -14,4 +14,19 @@ export class ClientsService {
     return lastValueFrom(this.httpService.get(`${this.urlBase}/clients`))
   }
 
+  createClients(newClient: any) {
+    return lastValueFrom(this.httpService.post(`${this.urlBase}/clients`, { ...newClient }))
+  }
+
+  findClient(id: string) {
+    return lastValueFrom(this.httpService.get(`${this.urlBase}/clients/${id}`))
+  }
+
+  updateClient(id: string, editClient: any) {
+    return lastValueFrom(this.httpService.patch(`${this.urlBase}/clients/${id}`, { ...editClient }))
+  }
+
+  deleteClient(id: string) {
+    return lastValueFrom(this.httpService.delete(`${this.urlBase}/clients/${id}`))
+  }
 }
