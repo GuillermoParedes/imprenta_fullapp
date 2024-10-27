@@ -1,13 +1,8 @@
 {
   "name": "angular-tailwind",
-  "displayName": "Angular Tailwind",
-  "version": "0.8.1",
-  "description": "Angular & Tailwind CSS Admin Dashboard Starter Kit, Free and Open Source",
-  "homepage": "https://github.com/lannodev/angular-tailwind#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lannodev/angular-tailwind.git"
-  },
+  "displayName": "Imprenta",
+  "version": "0.1.0",
+  "description": "Proyecto en Angular para aplicacion web de Imprenta",
   "keywords": [
     "angular",
     "tailwind",
@@ -16,8 +11,6 @@
     "dark mode",
     "open source"
   ],
-  "author": "Luciano Oliveira <me@lanno.dev>",
-  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
