@@ -35,18 +35,19 @@
         </tr>
       </thead>
       <tbody>
-        <!-- @for (client of clients(); track $index) {
-        <tr class="hover:bg-card/50" (click)="editarCliente(client)">
-          <td>{{client.first_name}}</td>
-          <td>{{client.last_name}}</td>
-          <td>{{client.type}}</td>
-          <td>{{client.cellphone}}</td>
+        @for (product of products(); track $index) {
+        <tr class="hover:bg-card/50" (click)="editarProducto(product)">
+          <td>{{product.id}}</td>
+          <td>{{product.name}}</td>
+          <td>{{product.categoryId}}</td>
+          <td>{{product.stock}}</td>
+          <td>{{product.sellingPrice}}</td>
         </tr>
         } @empty {
         <tr>
-          <td class="py-4 text-center text-sm" colspan="7">Sin clientes para mostrar</td>
+          <td class="py-4 text-center text-sm" colspan="7">Sin productos para mostrar</td>
         </tr>
-        } -->
+        }
       </tbody>
     </table>
   </div>
