@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
+import { AuthService } from 'src/app/auth.service';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,7 +19,9 @@ export class SignInComponent implements OnInit {
   submitted = false;
   passwordTextType!: boolean;
 
-  constructor(private readonly _formBuilder: FormBuilder, private readonly _router: Router) {}
+  authService = inject(AuthService)
+
+  constructor(private readonly _formBuilder: FormBuilder, private readonly _router: Router) { }
 
 
   ngOnInit(): void {
@@ -38,14 +42,21 @@ export class SignInComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
     const { username, password } = this.form.value;
-
-    localStorage.setItem("token", JSON.stringify({username, password}))
-
     // stop here if form is invalid
     if (this.form.invalid) {
       return;
     }
-
-    this._router.navigate(['/home']);
+    this.authService.signIn(username, password).then((response: any) => {
+      localStorage.setItem("token", response.accessToken)
+      localStorage.setItem("user", response?.user)
+      this._router.navigate(['/home']);
+      toast.success('Mensaje', {
+        description: 'Bienvenido!',
+      });
+    }).catch(error => {
+      toast.error('Mensaje', {
+        description: error?.error?.message,
+      });
+    })
   }
 }

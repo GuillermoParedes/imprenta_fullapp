@@ -2,7 +2,7 @@
   <div class="mx-auto px-5">
     <div class="flex items-center justify-between py-3.5 md:justify-start">
       <!-- Mobile Navigation Menu Button-->
-      <div class="sm:order-1 md:hidden">
+      <div class="sm:order-1 lg:hidden">
         <button
           (click)="toggleMobileMenu()"
           type="button"
@@ -15,16 +15,11 @@
       </div>
 
       <!-- Logo -->
-      <div class="flex items-center justify-start sm:order-2 md:mr-10 lg:hidden">
+      <div class="flex items-center justify-start sm:order-2 md:hidden">
         <a class="flex items-center justify-center rounded bg-primary p-2 focus:outline-none focus:ring-1">
           <svg-icon src="assets/icons/logo.svg"></svg-icon>
         </a>
         <b class="hidden pl-3 text-sm font-bold text-foreground sm:block"> Imprenta </b>
-      </div>
-
-      <!-- Desktop Menu -->
-      <div class="hidden space-x-10 sm:order-3 md:flex">
-        <!-- <app-navbar-menu></app-navbar-menu> -->
       </div>
 
       <!-- Profile menu -->
