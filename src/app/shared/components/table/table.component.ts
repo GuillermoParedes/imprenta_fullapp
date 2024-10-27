@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { User } from './model/user.model';
 import { FormsModule } from '@angular/forms';
@@ -9,6 +9,7 @@ import { TableRowComponent } from './components/table-row/table-row.component';
 import { TableActionComponent } from './components/table-action/table-action.component';
 import { toast } from 'ngx-sonner';
 import { dummyData } from 'src/app/shared/dummy/user.dummy';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-table',
@@ -20,13 +21,13 @@ import { dummyData } from 'src/app/shared/dummy/user.dummy';
     TableFooterComponent,
     TableRowComponent,
     TableActionComponent,
+    JsonPipe
   ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss',
 })
 export class TableComponent implements OnInit {
   users = signal<User[]>([]);
-
   constructor(private http: HttpClient) {
     this.http.get<User[]>('https://freetestapi.com/api/v1/users?limit=8').subscribe({
       next: (data) => this.users.set(data),
@@ -58,5 +59,5 @@ export class TableComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }
