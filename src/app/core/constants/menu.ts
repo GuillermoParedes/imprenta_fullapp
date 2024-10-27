@@ -20,17 +20,17 @@ export class Menu {
         {
           icon: 'assets/icons/heroicons/outline/cube.svg',
           label: 'Productos',
-          route: '/home/components/table',
+          route: '/home/products',
         },
         {
           icon: 'assets/icons/heroicons/outline/cube.svg',
           label: 'Pedidos',
-          route: '/home/components/table',
+          route: '/home/orders',
         },
         {
           icon: 'assets/icons/heroicons/outline/cube.svg',
           label: 'Reportes',
-          route: '/home/components/table',
+          route: '/home/dashboard',
         },
         // {
         //   icon: 'assets/icons/heroicons/outline/lock-closed.svg',
