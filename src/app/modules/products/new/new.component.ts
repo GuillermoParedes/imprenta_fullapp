@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { toast } from 'ngx-sonner';
-import { ClientsService } from '../../clients/clients.service';
 import { NgClass, NgIf } from '@angular/common';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-new',
@@ -16,7 +16,7 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 export class NewComponent {
   form!: FormGroup;
   submitted = false;
-  constructor(private readonly _formBuilder: FormBuilder, private readonly _router: Router, private service: ClientsService) { }
+  constructor(private readonly _formBuilder: FormBuilder, private readonly _router: Router, private service: ProductsService) { }
 
 
   ngOnInit(): void {
@@ -41,17 +41,17 @@ export class NewComponent {
       return;
     }
     console.log('entro', this.form.value)
-    // this.service.createClients(this.form.value).then(((response: any) => {
-    //   console.log('response', response)
-    //   this._router.navigate(['/home/clients']);
-    //   toast.success('Mensaje', {
-    //     description: response.message,
-    //   });
-    // }))
-    //   .catch(error => {
-    //     toast.error('Mensaje', {
-    //       description: 'No pude crear el cliente',
-    //     });
-    //   });
+    this.service.createProducts(this.form.value).then(((response: any) => {
+      console.log('response', response)
+      this._router.navigate(['/home/products']);
+      toast.success('Mensaje', {
+        description: response.message,
+      });
+    }))
+      .catch(error => {
+        toast.error('Mensaje', {
+          description: 'No pude crear el producto',
+        });
+      });
   }
 }
