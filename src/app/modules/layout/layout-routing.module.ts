@@ -9,9 +9,19 @@ const routes: Routes = [
     loadChildren: () => import('../dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
-    path: 'components',
+    path: 'clients',
     component: LayoutComponent,
-    loadChildren: () => import('../uikit/uikit.module').then((m) => m.UikitModule),
+    loadChildren: () => import('../clients/clients.module').then((m) => m.ClientsModule),
+  },
+  {
+    path: 'products',
+    component: LayoutComponent,
+    loadChildren: () => import('../products/products.module').then((m) => m.ProductsModule),
+  },
+  {
+    path: 'orders',
+    component: LayoutComponent,
+    loadChildren: () => import('../orders/orders.module').then((m) => m.OrdersModule),
   },
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'error/404' },

@@ -15,7 +15,7 @@ export class Menu {
         {
           icon: 'assets/icons/heroicons/outline/cube.svg',
           label: 'Clientes',
-          route: '/home/components/table',
+          route: '/home/clients',
         },
         {
           icon: 'assets/icons/heroicons/outline/cube.svg',
