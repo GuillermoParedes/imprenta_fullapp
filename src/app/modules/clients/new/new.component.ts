@@ -35,9 +35,6 @@ export class NewComponent {
 
   onSubmit() {
     console.log('onSUbmit', this.form.value)
-    // this.submitted = true;
-    // const { username, password } = this.form.value;
-    // // stop here if form is invalid
     if (this.form.invalid) {
       return;
     }
