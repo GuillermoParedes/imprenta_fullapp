@@ -1,0 +1,102 @@
+<div class="mb-4 flex justify-between">
+  <div class="inline-block">
+    <h3 class="font-semibold text-foreground">Registrar nuevo pedido</h3>
+  </div>
+</div>
+
+<div class="flex min-w-full flex-col rounded-xl border border-muted/20 bg-background p-2">
+
+  <div class="overflow-x-auto">
+    <!-- login form -->
+    <form class="my-10 space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="text-center">
+        <h2 class="mb-1 text-3xl font-semibold text-foreground">Nuevo <span class="text-primary">Pedido</span></h2>
+      </div>
+
+      <div class="space-y-3 text-left">
+        <div class="form__group">
+          <div class="relative">
+            <label for="stock"
+              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+              Cliente
+            </label>
+            <div class="flex flex-col">
+              <select formControlName="customerId" class="mr-2 peer block">
+                @for(client of clients(); track client) {
+                <option [value]="client.id">{{client.first_name}} {{client.last_name}}</option>
+                }
+              </select>
+            </div>
+            <div *ngIf="submitted && f['customerId'].errors" class="is__invalid-error">
+              <div *ngIf="f['customerId'].errors['required']">Campo requerido</div>
+            </div>
+          </div>
+        </div>
+        <div class="form__group">
+          <div class="relative">
+            <input type="date" id="dateShipping"
+              [ngClass]="{ 'is__invalid-input': submitted && f['dateShipping'].errors }" class="peer block"
+              placeholder=" " formControlName="dateShipping" />
+            <label for="dateShipping"
+              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+              Fecha de entrega
+            </label>
+          </div>
+          <div *ngIf="submitted && f['dateShipping'].errors" class="is__invalid-error">
+            <div *ngIf="f['dateShipping'].errors['required']">Campo requerido</div>
+          </div>
+        </div>
+        <div class="form__group">
+          <div class="relative">
+            <label class="text-sm text-muted-foreground">Producto</label>
+            <div class="flex flex-col">
+              @for(product of products(); track product) {
+              <label class="flex items-center">
+                <input type="radio" formControlName="product" [value]="product.id" class="mr-2" />
+                {{product.name}} - {{product.sellingPrice}} Bs.
+              </label>
+              }
+
+            </div>
+            <div *ngIf="submitted && f['product'].errors" class="is__invalid-error">
+              <div *ngIf="f['product'].errors['required']">Campo requerido</div>
+            </div>
+          </div>
+        </div>
+        <div class="form__group">
+          <div class="relative">
+            <input type="number" id="quantity" [ngClass]="{ 'is__invalid-input': submitted && f['quantity'].errors }"
+              class="peer block" placeholder=" " formControlName="quantity" />
+            <label for="quantity"
+              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+              Cantidad del producto
+            </label>
+          </div>
+          <div *ngIf="submitted && f['quantity'].errors" class="is__invalid-error">
+            <div *ngIf="f['quantity'].errors['required']">Campo requerido</div>
+          </div>
+        </div>
+        <div class="form__group">
+          <div class="relative">
+            <input type="number" id="totalAmount"
+              [ngClass]="{ 'is__invalid-input': submitted && f['totalAmount'].errors }" class="peer block"
+              placeholder=" " formControlName="totalAmount" [value]="10*10" />
+            <label for="totalAmount"
+              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+              Total a pagar
+            </label>
+          </div>
+          <div *ngIf="submitted && f['totalAmount'].errors" class="is__invalid-error">
+            <div *ngIf="f['totalAmount'].errors['required']">Campo requerido</div>
+          </div>
+        </div>
+      </div>
+      <div class="mb-2 flex items-center justify-between space-x-3">
+      </div>
+      <div>
+        <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Guardar pedido</app-button>
+      </div>
+    </form>
+
+  </div>
+</div>
