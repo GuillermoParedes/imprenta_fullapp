@@ -12,21 +12,21 @@ import { DatePipe } from '@angular/common';
 })
 export class OrdersComponent {
   pedidos = signal<any>([
-    {
-      id: 'asdasdasd',
-      customer: {
-        first_name: 'Samuel',
-        last_name: 'Doria Medina'
-      },
-      totalAmount: 30750,
-      dateShipping: new Date()
-    }
+    // {
+    //   id: 'asdasdasd',
+    //   customer: {
+    //     first_name: 'Samuel',
+    //     last_name: 'Doria Medina'
+    //   },
+    //   totalAmount: 30750,
+    //   dateShipping: new Date()
+    // }
   ]);
   constructor(private router: Router, private readonly orderService: OrdersService) {
-    // this.orderService.getPedidos().then((response: any) => {
-    //   console.log('resoise', response)
-    //   this.pedidos.set(response)
-    // })
+    this.orderService.getPedidos().then((response: any) => {
+      console.log('resoise', response)
+      this.pedidos.set(response)
+    })
   }
 
   crearPedido() {

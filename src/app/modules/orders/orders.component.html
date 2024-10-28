@@ -24,7 +24,9 @@
       <thead class="border border-muted/20 text-xs text-muted-foreground">
         <tr>
           <th class="min-w-[100px]">Nombre de cliente</th>
+          <th class="min-w-[100px]">Producto</th>
           <th class="min-w-[100px]">Total a pagar</th>
+          <th class="min-w-[100px]">Cantidad</th>
           <th class="min-w-[80px]">Fecha de entrega</th>
         </tr>
       </thead>
@@ -32,7 +34,9 @@
         @for (pedido of pedidos(); track $index) {
         <tr class="hover:bg-card/50" (click)="editarPedido(pedido)">
           <td>{{pedido.customer.first_name}} {{pedido.customer.last_name}}</td>
+          <td>{{pedido.product.name}}</td>
           <td>{{pedido.totalAmount}}</td>
+          <td>{{pedido.quantity}}</td>
           <td>{{pedido.dateShipping | date}}</td>
         </tr>
         } @empty {
