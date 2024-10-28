@@ -3,9 +3,7 @@
     <div class="flex items-center justify-between py-3.5 md:justify-start">
       <!-- Mobile Navigation Menu Button-->
       <div class="sm:order-1 lg:hidden">
-        <button
-          (click)="toggleMobileMenu()"
-          type="button"
+        <button (click)="toggleMobileMenu()" type="button"
           class="inline-flex items-center justify-center rounded-md bg-muted p-2 text-muted-foreground focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary hover:bg-muted-foreground hover:text-muted"
           aria-expanded="false">
           <span class="sr-only">Open menu</span>
@@ -17,9 +15,8 @@
       <!-- Logo -->
       <div class="flex items-center justify-start sm:order-2 md:hidden">
         <a class="flex items-center justify-center rounded bg-primary p-2 focus:outline-none focus:ring-1">
-          <svg-icon src="assets/icons/logo.svg"></svg-icon>
+          <img src="assets/logo.png" height="50" class="h-[50px]">
         </a>
-        <b class="hidden pl-3 text-sm font-bold text-foreground sm:block"> Imprenta </b>
       </div>
 
       <!-- Profile menu -->
