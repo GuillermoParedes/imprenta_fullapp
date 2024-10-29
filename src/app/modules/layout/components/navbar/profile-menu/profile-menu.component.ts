@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { ClickOutsideDirective } from '../../../../../shared/directives/click-outside.directive';
 import { AngularSvgIconModule } from 'angular-svg-icon';
@@ -58,7 +58,7 @@ export class ProfileMenuComponent implements OnInit {
 
   public themeMode = ['light', 'dark'];
 
-  constructor(public themeService: ThemeService) { }
+  constructor(public themeService: ThemeService, private router: Router) { }
 
   ngOnInit(): void { }
 
@@ -77,5 +77,15 @@ export class ProfileMenuComponent implements OnInit {
     this.themeService.theme.update((theme) => {
       return { ...theme, color: color };
     });
+  }
+
+  goLink(item: any) {
+    if (item.title === 'Cerrar sesión') {
+      // Limpiar el localStorage
+      localStorage.clear();
+    }
+
+    // Navegar a la ruta especificada
+    this.router.navigate([item.link]);
   }
 }
