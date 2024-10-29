@@ -80,11 +80,7 @@ export class ProfileMenuComponent implements OnInit {
   }
 
   goLink(item: any) {
-    if (item.title === 'Cerrar sesión') {
-      // Limpiar el localStorage
-      localStorage.clear();
-    }
-
+    localStorage.clear();
     // Navegar a la ruta especificada
     this.router.navigate([item.link]);
   }
