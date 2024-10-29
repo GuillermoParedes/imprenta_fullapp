@@ -38,16 +38,16 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class ProfileMenuComponent implements OnInit {
   public isOpen = false;
   public profileMenu = [
-    {
-      title: 'Perfil personal',
-      icon: './assets/icons/heroicons/outline/user-circle.svg',
-      link: '/profile',
-    },
-    {
-      title: 'Configuracion',
-      icon: './assets/icons/heroicons/outline/cog-6-tooth.svg',
-      link: '/settings',
-    },
+    // {
+    //   title: 'Perfil personal',
+    //   icon: './assets/icons/heroicons/outline/user-circle.svg',
+    //   link: '/profile',
+    // },
+    // {
+    //   title: 'Configuracion',
+    //   icon: './assets/icons/heroicons/outline/cog-6-tooth.svg',
+    //   link: '/settings',
+    // },
     {
       title: 'Cerrar sesion',
       icon: './assets/icons/heroicons/outline/logout.svg',
@@ -58,9 +58,9 @@ export class ProfileMenuComponent implements OnInit {
 
   public themeMode = ['light', 'dark'];
 
-  constructor(public themeService: ThemeService) {}
+  constructor(public themeService: ThemeService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   public toggleMenu(): void {
     this.isOpen = !this.isOpen;
