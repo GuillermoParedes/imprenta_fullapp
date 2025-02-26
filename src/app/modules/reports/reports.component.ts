@@ -9,10 +9,8 @@ import { Component, signal } from '@angular/core';
 })
 export class ReportsComponent {
   reports = signal([
-    { title: 'Informe de Ventas', description: 'Reporte mensual de ventas y estadísticas.', url: 'http://localhost:3000/reports/download' },
-    { title: 'Resumen de Clientes', description: 'Datos sobre nuevos y antiguos clientes.', url: 'http://localhost:3000/reports/download' },
-    { title: 'Estado de Inventario', description: 'Análisis de stock y productos disponibles.', url: 'http://localhost:3000/reports/download' },
-    { title: 'Desempeño Financiero', description: 'Reporte financiero del último trimestre.', url: 'http://localhost:3000/reports/download' },
-    { title: 'Tendencias del Mercado', description: 'Estudio sobre tendencias y proyecciones.', url: 'http://localhost:3000/reports/download' }
+    { title: 'Resumen de Clientes - Naturales', description: 'Datos sobre nuevos y antiguos clientes.', url: 'http://localhost:3000/reports/summary-clients-natural' },
+    { title: 'Resumen de Clientes - Juridicos', description: 'Datos sobre nuevos y antiguos clientes.', url: 'http://localhost:3000/reports/summary-clients-juridica' },
+    { title: 'Stock de Productos', description: 'Datos sobre la cantidad de productos actuales.', url: 'http://localhost:3000/reports/stock-products' },
   ]);
 }

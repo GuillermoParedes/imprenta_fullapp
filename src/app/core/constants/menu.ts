@@ -8,7 +8,7 @@ export class Menu {
       items: [
         {
           icon: 'assets/icons/heroicons/outline/chart-pie.svg',
-          label: 'Pabel administrativo',
+          label: 'Panel administrativo',
           route: '/home/dashboard',
 
         },
