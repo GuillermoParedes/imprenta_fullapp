@@ -3,10 +3,10 @@
   <div class="px-4">
     <!-- Logo -->
     <div class="relative h-10">
-      <div class="flex items-center" *ngIf="menuService.showSideBar">
+      <div class="flex items-center justify-center" *ngIf="menuService.showSideBar">
         <a (click)="toggleSidebar()"
-          class="flex cursor-pointer items-center justify-center rounded bg-primary p-2 focus:outline-none focus:ring-1">
-          <img src="assets/logo.png" class="h-[50px]">
+          class="flex cursor-pointer items-center justify-center rounded  focus:outline-none focus:ring-1">
+          <img src="assets/logo_horizontal.png" class="h-[50px]">
         </a>
       </div>
       <button (click)="toggleSidebar()"
