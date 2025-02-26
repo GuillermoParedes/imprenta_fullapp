@@ -1,52 +1,65 @@
-<!-- <app-table [header]="header" [data]="data"></app-table> -->
+<div class="p-6">
+  <h1 class="text-2xl font-bold text-gray-900 mb-4">🧑‍💼 Listado de Clientes</h1>
 
-<div class="mb-4 flex justify-between">
-  <div class="inline-block">
-    <h3 class="font-semibold text-foreground">Listado de clientes</h3>
-    <div class="space-x-1 text-xs font-medium text-muted-foreground">
-      <a href="" class="hover:text-primary">Total clientes:</a>
-      <span class="text-foreground">{{clients().length}}</span>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Clientes Naturales -->
+    <div>
+      <h2 class="text-lg font-semibold text-gray-800 mb-3">🏠 Clientes Naturales</h2>
+      <div class="rounded-xl border border-muted/20 bg-white p-4 shadow-md">
+        <div class="overflow-x-auto">
+          <table class="w-full table-auto border-collapse text-left align-middle leading-5 text-muted-foreground">
+            <thead class="border-b-2 border-muted/40 text-xs text-gray-600 uppercase">
+              <tr>
+                <th class="px-4 py-2">Nombre(s)</th>
+                <th class="px-4 py-2">Apellido(s)</th>
+                <th class="px-4 py-2">Celular</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (client of clientesNaturales(); track $index) {
+              <tr class="hover:bg-primary/10 cursor-pointer transition-all" (click)="editarCliente(client)">
+                <td class="px-4 py-3">{{client.first_name}}</td>
+                <td class="px-4 py-3">{{client.last_name}}</td>
+                <td class="px-4 py-3">{{client.cellphone}}</td>
+              </tr>
+              } @empty {
+              <tr>
+                <td class="py-4 text-center text-sm text-gray-500" colspan="3">Sin clientes para mostrar</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="inline-block space-x-4">
-    <!-- <button
-      class="flex-none rounded-md bg-muted px-4 py-2.5 text-xs font-semibold text-muted-foreground hover:text-foreground">
-      Exportar Clientes en CSV
-    </button> -->
-    <button (click)="crearCliente()"
-      class="flex-none rounded-md bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground">
-      Agregar un cliente
-    </button>
-  </div>
-</div>
 
-<div class="flex min-w-full flex-col rounded-xl border border-muted/20 bg-background p-2">
-
-  <div class="overflow-x-auto">
-    <table
-      class="table w-full table-auto border-collapse border-0 text-left align-middle leading-5 text-muted-foreground">
-      <thead class="border border-muted/20 text-xs text-muted-foreground">
-        <tr>
-          <th class="min-w-[100px]">Nombre(s)</th>
-          <th class="min-w-[100px]">Apellido(s)</th>
-          <th class="min-w-[80px]">Tipo de Cliente</th>
-          <th class="min-w-[80px]">Celular</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (client of clients(); track $index) {
-        <tr class="hover:bg-card/50" (click)="editarCliente(client)">
-          <td>{{client.first_name}}</td>
-          <td>{{client.last_name}}</td>
-          <td>{{client.type}}</td>
-          <td>{{client.cellphone}}</td>
-        </tr>
-        } @empty {
-        <tr>
-          <td class="py-4 text-center text-sm" colspan="7">Sin clientes para mostrar</td>
-        </tr>
-        }
-      </tbody>
-    </table>
+    <!-- Clientes Jurídicos -->
+    <div>
+      <h2 class="text-lg font-semibold text-gray-800 mb-3">🏢 Clientes Jurídicos</h2>
+      <div class="rounded-xl border border-muted/20 bg-white p-4 shadow-md">
+        <div class="overflow-x-auto">
+          <table class="w-full table-auto border-collapse text-left align-middle leading-5 text-muted-foreground">
+            <thead class="border-b-2 border-muted/40 text-xs text-gray-600 uppercase">
+              <tr>
+                <th class="px-4 py-2">Nombre de la Empresa</th>
+                <th class="px-4 py-2">Celular</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (client of clientesJuridicos(); track $index) {
+              <tr class="hover:bg-primary/10 cursor-pointer transition-all" (click)="editarCliente(client)">
+                <td class="px-4 py-3">{{client.first_name}}</td>
+                <td class="px-4 py-3">{{client.cellphone}}</td>
+              </tr>
+              } @empty {
+              <tr>
+                <td class="py-4 text-center text-sm text-gray-500" colspan="3">Sin clientes para mostrar</td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
