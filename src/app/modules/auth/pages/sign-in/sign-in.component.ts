@@ -49,7 +49,7 @@ export class SignInComponent implements OnInit {
     this.authService.signIn(username, password).then((response: any) => {
       localStorage.setItem("token", response.accessToken)
       localStorage.setItem("user", response?.user)
-      this._router.navigate(['/home']);
+      this._router.navigate(['/home/dashboard']);
       toast.success('Mensaje', {
         description: 'Bienvenido!',
       });

@@ -30,7 +30,7 @@ export class Menu {
         {
           icon: 'assets/icons/heroicons/outline/information-circle.svg',
           label: 'Reportes',
-          route: '/home/dashboard',
+          route: '/home/reports',
         },
       ],
     },
