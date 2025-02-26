@@ -1,40 +1,36 @@
 <div class="p-6">
     <h1 class="text-3xl font-bold text-gray-900 mb-6">📊 Dashboard de Ventas</h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-        <!-- Contadores -->
-        <div class="md:col-span-1 flex flex-col gap-6">
-            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-                <h3 class="text-lg font-semibold text-gray-800">Clientes</h3>
-                <p class="text-4xl font-bold text-blue-600">{{ clientesCount }}</p>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-                <h3 class="text-lg font-semibold text-gray-800">Productos</h3>
-                <p class="text-4xl font-bold text-green-600">{{ productosCount }}</p>
-            </div>
-            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-                <h3 class="text-lg font-semibold text-gray-800">Pedidos</h3>
-                <p class="text-4xl font-bold text-orange-600">{{ pedidosCount }}</p>
-            </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto grid-auto-flow-dense">
+        <!-- Contadores (Clientes, Productos, Pedidos) -->
+        <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+            <h3 class="text-lg font-semibold text-gray-800">Clientes</h3>
+            <p class="text-4xl font-bold text-blue-600">{{ clientesCount }}</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+            <h3 class="text-lg font-semibold text-gray-800">Productos</h3>
+            <p class="text-4xl font-bold text-green-600">{{ productosCount }}</p>
+        </div>
+        <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+            <h3 class="text-lg font-semibold text-gray-800">Pedidos</h3>
+            <p class="text-4xl font-bold text-orange-600">{{ pedidosCount }}</p>
         </div>
 
-        <!-- Gráficos -->
-        <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div class="bg-white p-4 rounded-lg shadow-md sm:col-span-2">
-                <h3 class="text-xl font-semibold text-gray-800">📦 Stock de Productos</h3>
-                <apx-chart class="w-full h-80" [series]="barChart.series" [chart]="barChart.chart"
-                    [xaxis]="barChart.xaxis" [colors]="barChart.colors"></apx-chart>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold text-gray-800">💰 Distribución de Ventas</h3>
-                <apx-chart class="w-full h-80" [series]="pieChart.series" [chart]="pieChart.chart"
-                    [labels]="pieChart.labels" [colors]="pieChart.colors"></apx-chart>
-            </div>
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h3 class="text-xl font-semibold text-gray-800">📈 Tendencia de Ventas</h3>
-                <apx-chart class="w-full h-80" [series]="lineChart.series" [chart]="lineChart.chart"
-                    [xaxis]="lineChart.xaxis" [colors]="lineChart.colors"></apx-chart>
-            </div>
+        <!-- Gráficos con Masonry Layout -->
+        <div class="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800">📦 Stock de Productos</h3>
+            <apx-chart class="w-full h-80" [series]="barChart.series" [chart]="barChart.chart" [xaxis]="barChart.xaxis"
+                [colors]="barChart.colors"></apx-chart>
+        </div>
+        <div class="md:col-span-1 bg-white p-4 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800">💰 Distribución de Ventas</h3>
+            <apx-chart class="w-72 h-72" [series]="pieChart.series" [chart]="pieChart.chart" [labels]="pieChart.labels"
+                [colors]="pieChart.colors"></apx-chart>
+        </div>
+        <div class="md:col-span-3 bg-white p-4 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-gray-800">📈 Tendencia de Ventas</h3>
+            <apx-chart class="w-full h-80" [series]="lineChart.series" [chart]="lineChart.chart"
+                [xaxis]="lineChart.xaxis" [colors]="lineChart.colors"></apx-chart>
         </div>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ClientsService } from '../clients/clients.service';
 import { ProductsService } from '../products/products.service';
@@ -7,6 +7,7 @@ import {
   ApexChart,
   ApexXAxis, NgApexchartsModule
 } from 'ng-apexcharts';
+import { DashboardService } from './dashboard.service';
 
 interface IBarChart {
   series: { name: string; data: number[] }[];
@@ -48,7 +49,9 @@ export class DashboardComponent implements OnInit {
     series: [35, 28, 42, 30, 20], // Datos reales de productos por categoría
     chart: {
       type: 'pie',
-      height: 350
+      height: 'auto',
+      toolbar: {
+      }
     },
     labels: ['Folletos', 'Invitaciones', 'Libros', 'Otros', 'Tarjetas Personales'],
     colors: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#9C27B0']
@@ -56,13 +59,20 @@ export class DashboardComponent implements OnInit {
 
   lineChart: IBarChart = {
     series: [{
-      name: 'Stock de Productos',
+      name: 'Tendencia de X',
+      data: [50, 140, 130, 125, 110, 105, 100] // Datos de stock real
+    }, {
+      name: 'Tendencia de A',
+      data: [10, 140, 130, 125, 110, 105, 100] // Datos de stock real
+    }, {
+      name: 'Tendencia de H',
       data: [150, 140, 130, 125, 110, 105, 100] // Datos de stock real
     }],
     chart: {
       type: 'line',
       height: 350,
       toolbar: {
+
         tools: {
           zoom: false,
           pan: false,
@@ -77,7 +87,7 @@ export class DashboardComponent implements OnInit {
     },
     colors: ['#F44336']
   };
-
+  dashboardService = inject(DashboardService)
   constructor(private readonly clientService: ClientsService, private readonly productsService: ProductsService, private readonly pedidosService: OrdersService) { }
 
   ngOnInit(): void {
@@ -90,6 +100,28 @@ export class DashboardComponent implements OnInit {
     })
     this.pedidosService.getPedidos().then((response: any) => {
       this.pedidosCount = response.length
+    })
+
+    this.dashboardService.getStockProducts().then((response: any) => {
+      console.log('response', response)
+      if (response) {
+        this.barChart = {
+          ...this.barChart,
+          series: [{
+            name: 'Cantidad de Productos',
+            data: response.map((item: any) => item.count) // Sustituir con datos reales
+          }],
+          xaxis: {
+            categories: response.map((item: any) => item.name)
+          },
+        }
+      }
+    })
+    this.dashboardService.getTopSells().then((response: any) => {
+      console.log('response', response)
+      if (response) {
+        this.lineChart = response
+      }
     })
 
   }
