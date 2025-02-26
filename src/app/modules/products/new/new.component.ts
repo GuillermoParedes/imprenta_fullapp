@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { toast } from 'ngx-sonner';
 import { NgClass, NgIf } from '@angular/common';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
@@ -9,7 +9,7 @@ import { ProductsService } from '../products.service';
 @Component({
   selector: 'app-new',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf, ButtonComponent],
+  imports: [FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './new.component.html',
   styleUrl: './new.component.scss'
 })

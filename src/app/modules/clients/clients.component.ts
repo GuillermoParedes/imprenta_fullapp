@@ -29,7 +29,6 @@ export class ClientsComponent {
   async loadClients() {
     try {
       const response = await this.clientsService.getClients();
-      console.log('Clientes obtenidos:', response);
       this.clients.set(response || []);
     } catch (error) {
       console.error('Error al obtener clientes:', error);

@@ -1,50 +1,48 @@
-<!-- <app-table [header]="header" [data]="data"></app-table> -->
+<div class="p-6">
+  <h1 class="text-2xl font-bold text-foreground mb-4">📦 Listado de Pedidos</h1>
 
-<div class="mb-4 flex justify-between">
-  <div class="inline-block">
-    <h3 class="font-semibold text-foreground">Listado de pedidos</h3>
-    <div class="space-x-1 text-xs font-medium text-muted-foreground">
-      <a href="" class="hover:text-primary">Total pedidos:</a>
-      <span class="text-foreground">{{pedidos().length}}</span>
+  <div class="flex justify-between items-center mb-6">
+    <div>
+      <span class="text-sm font-medium text-muted-foreground">
+        <a href="" class="hover:text-primary">Total pedidos:</a>
+        <span class="text-foreground font-semibold">{{ pedidos().length }}</span>
+      </span>
     </div>
-  </div>
-  <div class="inline-block space-x-4">
     <button (click)="crearPedido()"
-      class="flex-none rounded-md bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground">
-      Agregar un pedido
+      class="rounded-lg bg-primary px-5 py-2 text-sm font-medium text-primary-foreground shadow-md transition hover:bg-primary/80">
+      ➕ Agregar pedido
     </button>
   </div>
-</div>
 
-<div class="flex min-w-full flex-col rounded-xl border border-muted/20 bg-background p-2">
-
-  <div class="overflow-x-auto">
-    <table
-      class="table w-full table-auto border-collapse border-0 text-left align-middle leading-5 text-muted-foreground">
-      <thead class="border border-muted/20 text-xs text-muted-foreground">
-        <tr>
-          <th class="min-w-[100px]">Nombre de cliente</th>
-          <th class="min-w-[100px]">Producto</th>
-          <th class="min-w-[100px]">Total a pagar</th>
-          <th class="min-w-[100px]">Cantidad</th>
-          <th class="min-w-[80px]">Fecha de entrega</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (pedido of pedidos(); track $index) {
-        <tr class="hover:bg-card/50" (click)="editarPedido(pedido)">
-          <td>{{pedido.customer.first_name}} {{pedido.customer.last_name}}</td>
-          <td>{{pedido.product.name}}</td>
-          <td>{{pedido.totalAmount}}</td>
-          <td>{{pedido.quantity}}</td>
-          <td>{{pedido.dateShipping | date}}</td>
-        </tr>
-        } @empty {
-        <tr>
-          <td class="py-4 text-center text-sm" colspan="7">Sin pedidos para mostrar</td>
-        </tr>
-        }
-      </tbody>
-    </table>
+  <div class="w-full rounded-lg border border-muted/30 bg-background p-4 shadow-sm">
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse text-left text-sm">
+        <thead class="border-b border-muted/40 bg-muted/10 text-muted-foreground uppercase text-xs">
+          <tr>
+            <th class="px-4 py-3">Nombre de Cliente</th>
+            <th class="px-4 py-3">Producto</th>
+            <th class="px-4 py-3 text-right">Total a Pagar</th>
+            <th class="px-4 py-3 text-center">Cantidad</th>
+            <th class="px-4 py-3 text-center">Fecha de Entrega</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (pedido of pedidos(); track $index) {
+          <tr class="border-b border-muted/20 transition hover:bg-muted/10 cursor-pointer"
+            (click)="editarPedido(pedido)">
+            <td class="px-4 py-3">{{ pedido.customer.first_name }} {{ pedido.customer.last_name }}</td>
+            <td class="px-4 py-3">{{ pedido.product.name }}</td>
+            <td class="px-4 py-3 text-right font-medium text-primary">{{ pedido.totalAmount }}</td>
+            <td class="px-4 py-3 text-center">{{ pedido.quantity }}</td>
+            <td class="px-4 py-3 text-center">{{ pedido.dateShipping | date:'dd/MM/yyyy' }}</td>
+          </tr>
+          } @empty {
+          <tr>
+            <td class="py-5 text-center text-sm text-muted-foreground" colspan="5">🚫 Sin pedidos disponibles</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

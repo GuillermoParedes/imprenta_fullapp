@@ -24,7 +24,6 @@ export class OrdersComponent {
   ]);
   constructor(private router: Router, private readonly orderService: OrdersService) {
     this.orderService.getPedidos().then((response: any) => {
-      console.log('resoise', response)
       this.pedidos.set(response)
     })
   }

@@ -13,7 +13,6 @@ export class ProductsComponent {
   products = signal<any>([]);
   constructor(private router: Router, private productService: ProductsService) {
     this.productService.getProducts().then((response: any) => {
-      console.log('resoise', response)
       this.products.set(response)
     })
   }

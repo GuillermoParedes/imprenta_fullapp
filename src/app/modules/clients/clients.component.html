@@ -1,5 +1,11 @@
-<div class="p-6">
-  <h1 class="text-2xl font-bold text-gray-900 mb-4">🧑‍💼 Listado de Clientes</h1>
+<div class="">
+  <div class="p-6 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-gray-900">🧑‍💼 Listado de Clientes</h1>
+    <button (click)="crearCliente()"
+      class="rounded-lg bg-red-600 px-5 py-2.5 text-sm font-medium text-white shadow-md transition hover:bg-red-500 flex items-center">
+      ➕ Agregar cliente
+    </button>
+  </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
     <!-- Clientes Naturales -->
@@ -53,7 +59,7 @@
               </tr>
               } @empty {
               <tr>
-                <td class="py-4 text-center text-sm text-gray-500" colspan="3">Sin clientes para mostrar</td>
+                <td class="py-4 text-center text-sm text-gray-500" colspan="2">Sin clientes para mostrar</td>
               </tr>
               }
             </tbody>
