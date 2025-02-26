@@ -1,42 +1,40 @@
-<div class="grid grid-cols-1 md:grid-cols-4 gap-6 p-6">
-    <!-- Contadores en el lado izquierdo -->
-    <div class="md:col-span-1 flex flex-col gap-6">
-        <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Clientes</h3>
-            <p class="text-5xl font-bold text-blue-600">{{ clientesCount }}</p>
-        </div>
-        <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Productos</h3>
-            <p class="text-5xl font-bold text-green-600">{{ productosCount }}</p>
-        </div>
-        <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
-            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Pedidos</h3>
-            <p class="text-5xl font-bold text-green-600">{{ pedidosCount }}</p>
-        </div>
-    </div>
+<div class="p-6">
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">📊 Dashboard de Ventas</h1>
 
-    <!-- Gráficos a la derecha -->
-    <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <!-- Gráfico de Barras (Stock) -->
-        <div class="bg-white p-4 rounded-lg shadow-md sm:col-span-2">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Stock de Productos</h3>
-            <apx-chart class="w-full h-80" [series]="barChart.series" [chart]="barChart.chart" [xaxis]="barChart.xaxis"
-                [colors]="barChart.colors">
-            </apx-chart>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <!-- Contadores -->
+        <div class="md:col-span-1 flex flex-col gap-6">
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+                <h3 class="text-lg font-semibold text-gray-800">Clientes</h3>
+                <p class="text-4xl font-bold text-blue-600">{{ clientesCount }}</p>
+            </div>
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+                <h3 class="text-lg font-semibold text-gray-800">Productos</h3>
+                <p class="text-4xl font-bold text-green-600">{{ productosCount }}</p>
+            </div>
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center">
+                <h3 class="text-lg font-semibold text-gray-800">Pedidos</h3>
+                <p class="text-4xl font-bold text-orange-600">{{ pedidosCount }}</p>
+            </div>
         </div>
-        <!-- Gráfico de Pie -->
-        <div class="bg-white p-4 rounded-lg shadow-md">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Distribución de Ventas</h3>
-            <apx-chart class="w-full h-80" [series]="pieChart.series" [chart]="pieChart.chart"
-                [labels]="pieChart.labels" [colors]="pieChart.colors">
-            </apx-chart>
-        </div>
-        <!-- Gráfico de Línea (sin zoom) -->
-        <div class="bg-white p-4 rounded-lg shadow-md">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Tendencia de Ventas</h3>
-            <apx-chart class="w-full h-80" [series]="lineChart.series" [chart]="lineChart.chart"
-                [xaxis]="lineChart.xaxis" [colors]="lineChart.colors">
-            </apx-chart>
+
+        <!-- Gráficos -->
+        <div class="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="bg-white p-4 rounded-lg shadow-md sm:col-span-2">
+                <h3 class="text-xl font-semibold text-gray-800">📦 Stock de Productos</h3>
+                <apx-chart class="w-full h-80" [series]="barChart.series" [chart]="barChart.chart"
+                    [xaxis]="barChart.xaxis" [colors]="barChart.colors"></apx-chart>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800">💰 Distribución de Ventas</h3>
+                <apx-chart class="w-full h-80" [series]="pieChart.series" [chart]="pieChart.chart"
+                    [labels]="pieChart.labels" [colors]="pieChart.colors"></apx-chart>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h3 class="text-xl font-semibold text-gray-800">📈 Tendencia de Ventas</h3>
+                <apx-chart class="w-full h-80" [series]="lineChart.series" [chart]="lineChart.chart"
+                    [xaxis]="lineChart.xaxis" [colors]="lineChart.colors"></apx-chart>
+            </div>
         </div>
     </div>
 </div>
