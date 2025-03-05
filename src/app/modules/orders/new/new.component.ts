@@ -7,6 +7,7 @@ import { ButtonComponent } from 'src/app/shared/components/button/button.compone
 import { ProductsService } from '../../products/products.service';
 import { ClientsService } from '../../clients/clients.service';
 import { OrdersService } from '../orders.service';
+import { distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-new',
@@ -31,32 +32,25 @@ export class NewComponent {
       productId: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
       totalAmount: [{ value: 0, disabled: true }]
-      // description: ['', Validators.required],
-      // sellingPrice: ['', Validators.required],
-      // actualPrice: ['', Validators.required],
-      // stock: ['', Validators.required],
-      // categoryId: ['', Validators.required],
-
     });
 
     this.clienteService.getClients().then((response: any) => {
-      console.log('clientsService', response)
       this.clients.set(response)
     })
     this.productoService.getProducts().then((response: any) => {
-      console.log('productsservice', response)
       this.products.set(response)
     })
 
-    this.form.get('productId')?.valueChanges.subscribe((value) => {
+    this.form.get('productId')?.valueChanges.pipe(
+      distinctUntilChanged()
+    ).subscribe((value) => {
       console.log('El campo product ha cambiado:', value);
-      // Aquí puedes realizar las acciones necesarias según el valor del campo
+      this.actualizarMaxStock();
       this.calcularTotalAPagar()
     });
-
-    this.form.get('quantity')?.valueChanges.subscribe((value) => {
-      console.log('El campo quantity ha cambiado:', value);
-      // Aquí puedes realizar las acciones necesarias según el valor del campo
+    this.form.get('quantity')?.valueChanges.pipe(
+      distinctUntilChanged()
+    ).subscribe((value) => {
       this.calcularTotalAPagar()
     });
   }
@@ -64,14 +58,35 @@ export class NewComponent {
   get f() {
     return this.form.controls;
   }
+
+  actualizarMaxStock() {
+    const _product = this.form.get('productId')?.value;
+    console.log('product', _product)
+    const stockDisponible = this.obtenerStockDelProductoSeleccionado();
+    console.log('stock', stockDisponible)
+    if (stockDisponible < 1) return; // No actualizar si no hay stock válido
+    this.form.get('quantity')?.setValidators([
+      Validators.required,
+      Validators.min(0),
+      Validators.max(stockDisponible) // Se asegura que no exceda el stock disponible
+    ]);
+    this.form.get('quantity')?.updateValueAndValidity();
+  }
+  obtenerStockDelProductoSeleccionado(): number {
+    const selectedProduct = this.products().find((p: any) => p.id === this.form.get('productId')?.value);
+    return selectedProduct && selectedProduct.stock > 0 ? selectedProduct.stock : 1; // Evita valores 0 o negativos
+  }
   calcularTotalAPagar() {
     const _quantity = this.form.get('quantity')?.value;
     const _product = this.form.get('productId')?.value;
     const _productValue = this.products().find((response: any) => response.id == _product)
     const _totalAmount = (_productValue.sellingPrice ?? 0) * (_quantity ?? 0)
     this.form.get('totalAmount')?.setValue(_totalAmount)
+    this.form.get('quantity')?.updateValueAndValidity();
   }
   onSubmit() {
+    console.log('onSUbmit', this.form)
+    console.log('onSUbmit', this.form.errors)
     if (this.form.invalid) {
       return;
     }

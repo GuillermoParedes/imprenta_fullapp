@@ -37,6 +37,16 @@
           <label for="quantity" class="text-sm font-medium text-gray-700">Cantidad del Producto</label>
           <input type="number" id="quantity" formControlName="quantity"
             class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary" />
+          <p *ngIf="f['quantity'].touched && f['quantity'].hasError('required')" class="text-red-500 text-sm">
+            La cantidad es obligatoria.
+          </p>
+          <p *ngIf="f['quantity'].touched && f['quantity'].hasError('min')" class="text-red-500 text-sm">
+            La cantidad mínima es 1.
+          </p>
+          <p *ngIf="f['quantity'].touched && f['quantity'].hasError('max')" class="text-red-500 text-sm">
+            La cantidad no puede ser mayor a {{ obtenerStockDelProductoSeleccionado() }} unidades.
+          </p>
+
         </div>
         <div>
           <label for="totalAmount" class="text-sm font-medium text-gray-700">Total a Pagar</label>
@@ -45,8 +55,8 @@
         </div>
       </div>
       <div class="text-center">
-        <button type="submit"
-          class="rounded-lg bg-green-600 px-6 py-3 text-sm font-medium text-white shadow-md hover:bg-green-500 transition-all">
+        <button type="submit" [disabled]="form.invalid"
+          class="disabled:opacity-50 rounded-lg bg-green-600 px-6 py-3 text-sm font-medium text-white shadow-md hover:bg-green-500 transition-all">
           Guardar Pedido
         </button>
       </div>
