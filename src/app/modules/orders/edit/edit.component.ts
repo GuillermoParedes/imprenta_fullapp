@@ -7,24 +7,30 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OrdersService } from '../orders.service';
 import { ClientsService } from '../../clients/clients.service';
 import { ProductsService } from '../../products/products.service';
+import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
-   imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf, ButtonComponent],
+  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf, ButtonComponent, BreadcrumbComponent],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss'
 })
 export class EditComponent {
-form!: FormGroup;
+  form!: FormGroup;
   submitted = false;
   pedidoId: any = null;
   clients = signal<any>([]);
   products = signal<any>([]);
+  breadcrumbItems = [
+    { label: 'Inicio', url: '/home/dashboard' },
+    { label: 'Lista de ordenes', url: '/home/orders' },
+    { label: 'Detalle' }
+  ];
   constructor(private readonly _formBuilder: FormBuilder, private readonly _router: Router,
     private readonly _route: ActivatedRoute,
     private service: OrdersService,
-    private clienteService: ClientsService, 
+    private clienteService: ClientsService,
     private productoService: ProductsService) { }
 
 
@@ -86,6 +92,7 @@ form!: FormGroup;
     if (this.form.invalid) {
       return;
     }
+    this.form.get('totalAmount')?.enable();
     this.service.updatePedido(this.pedidoId, this.form.value).then(((response: any) => {
       this._router.navigate(['/home/orders']);
       toast.success('Mensaje', {

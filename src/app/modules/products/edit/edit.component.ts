@@ -5,11 +5,12 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators } 
 import { Router, ActivatedRoute } from '@angular/router';
 import { toast } from 'ngx-sonner';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
+import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf, ButtonComponent],
+  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf, ButtonComponent, BreadcrumbComponent],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss'
 })
@@ -17,6 +18,11 @@ export class EditComponent {
   form!: FormGroup;
   submitted = false;
   productId: any = null;
+  breadcrumbItems = [
+    { label: 'Inicio', url: '/home/dashboard' },
+    { label: 'Lista de productos', url: '/home/products' },
+    { label: 'Detalle' }
+  ];
   constructor(private readonly _formBuilder: FormBuilder, private readonly _router: Router,
     private readonly _route: ActivatedRoute,
     private service: ProductsService) { }

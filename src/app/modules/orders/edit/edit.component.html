@@ -1,8 +1,17 @@
-<!-- <app-table [header]="header" [data]="data"></app-table> -->
+<div class="mb-4 flex justify-between">
 
-<div class="mb-4 flex justify-items-end">
-    <app-button impact="bold" tone="primary" shape="rounded" size="medium" (click)="eliminarPedido()">Eliminar
-      pedido</app-button>
+  <nav class="bg-white shadow-sm px-6 py-3 rounded-lg flex items-center justify-between">
+    <!-- Breadcrumb Links -->
+    <app-breadcrumb [breadcrumbItems]="breadcrumbItems"></app-breadcrumb>
+    <!-- Actions (Edit & Delete) -->
+
+  </nav>
+  <div class="flex space-x-3">
+    <button class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg shadow"
+      (click)="eliminarPedido()">
+      Eliminar pedido
+    </button>
+  </div>
 </div>
 
 <div class="flex min-w-full flex-col rounded-xl border border-muted/20 bg-background p-2">
@@ -10,53 +19,53 @@
   <div class="overflow-x-auto">
     <!-- login form -->
     <form class="space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+        <label for="customerId" class="text-sm font-medium text-gray-700">Cliente</label>
+        <select formControlName="customerId"
+          class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary">
+          @for(client of clients(); track client) {
+          <option [value]="client.id">{{client.first_name}} {{client.last_name}}</option>
+          }
+        </select>
+      </div>
+      <div>
+        <label for="dateShipping" class="text-sm font-medium text-gray-700">Fecha de Entrega</label>
+
+        <input type="date" id="dateShipping" formControlName="dateShipping"
+          class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary" lang="es" />
+
+      </div>
+      <div>
+        <label class="text-sm font-medium text-gray-700">Productos</label>
+        <select formControlName="productId"
+          class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary">
+          <option *ngFor="let product of products()" [value]="product.id">{{product.name}} - {{product.sellingPrice}}
+            Bs.</option>
+          @for(product of products(); track product) {
+          <option [value]="product.id">{{product.name}} - {{product.sellingPrice}} Bs.</option>
+          }
+
+        </select>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label for="customerId" class="text-sm font-medium text-gray-700">Cliente</label>
-          <select formControlName="customerId"
-            class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary">
-            @for(client of clients(); track client) {
-            <option [value]="client.id">{{client.first_name}} {{client.last_name}}</option>
-            }
-          </select>
+          <label for="quantity" class="text-sm font-medium text-gray-700">Cantidad del Producto</label>
+          <input type="number" id="quantity" formControlName="quantity"
+            class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary" />
         </div>
         <div>
-          <label for="dateShipping" class="text-sm font-medium text-gray-700">Fecha de Entrega</label>
-  
-          <input type="date" id="dateShipping" formControlName="dateShipping"
-            class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary" lang="es" />
-  
+          <label for="totalAmount" class="text-sm font-medium text-gray-700">Total a Pagar</label>
+          <input type="number" id="totalAmount" formControlName="totalAmount"
+            class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary" />
         </div>
-        <div>
-          <label class="text-sm font-medium text-gray-700">Productos</label>
-          <select formControlName="productId"
-            class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary">
-            <option *ngFor="let product of products()" [value]="product.id">{{product.name}} - {{product.sellingPrice}}
-              Bs.</option>
-            @for(product of products(); track product) {
-            <option [value]="product.id">{{product.name}} - {{product.sellingPrice}} Bs.</option>
-            }
-  
-          </select>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label for="quantity" class="text-sm font-medium text-gray-700">Cantidad del Producto</label>
-            <input type="number" id="quantity" formControlName="quantity"
-              class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary" />
-          </div>
-          <div>
-            <label for="totalAmount" class="text-sm font-medium text-gray-700">Total a Pagar</label>
-            <input type="number" id="totalAmount" formControlName="totalAmount"
-              class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary" />
-          </div>
-        </div>
-        <div class="text-center">
-          <button type="submit"
-            class="rounded-lg bg-green-600 px-6 py-3 text-sm font-medium text-white shadow-md hover:bg-green-500 transition-all">
-            Guardar Pedido
-          </button>
-        </div>
-      </form>
+      </div>
+      <div class="text-center">
+        <button type="submit"
+          class="rounded-lg bg-green-600 px-6 py-3 text-sm font-medium text-white shadow-md hover:bg-green-500 transition-all">
+          Guardar Pedido
+        </button>
+      </div>
+    </form>
 
   </div>
 </div>

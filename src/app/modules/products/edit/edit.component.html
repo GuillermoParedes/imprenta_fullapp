@@ -1,8 +1,20 @@
 <!-- <app-table [header]="header" [data]="data"></app-table> -->
 
-<div class="mb-4 flex justify-items-end">
-    <app-button impact="bold" tone="primary" shape="rounded" size="medium" (click)="eliminarProducto()">Eliminar
-      producto</app-button>
+<div class="mb-4 flex justify-between">
+
+
+  <nav class="bg-white shadow-sm px-6 py-3 rounded-lg flex items-center justify-between">
+    <!-- Breadcrumb Links -->
+    <app-breadcrumb [breadcrumbItems]="breadcrumbItems"></app-breadcrumb>
+    <!-- Actions (Edit & Delete) -->
+
+  </nav>
+  <div class="flex space-x-3">
+    <button class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg shadow"
+      (click)="eliminarProducto()">
+      Eliminar producto
+    </button>
+  </div>
 </div>
 
 <div class="flex min-w-full flex-col rounded-xl border border-muted/20 bg-background p-2">
@@ -11,7 +23,7 @@
     <!-- login form -->
     <form class="my-10 space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="text-center">
-        <h2 class="mb-1 text-3xl font-semibold text-foreground">Nuevo <span class="text-primary">Producto</span></h2>
+        <h2 class="mb-1 text-3xl font-semibold text-foreground">Editar <span class="text-primary">Producto</span></h2>
       </div>
 
       <div class="space-y-3 text-left">

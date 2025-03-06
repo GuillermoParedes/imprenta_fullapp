@@ -1,0 +1,11 @@
+<ol class="flex items-center space-x-3 text-gray-600 text-sm">
+  <li *ngFor="let item of breadcrumbItems; let last = last" class="flex items-center">
+    <a *ngIf="item.url && !last" [routerLink]="item.url" class="text-blue-600 hover:text-blue-800 font-medium">
+      {{ item.label }}
+    </a>
+    <span *ngIf="!last" class="mx-2 text-gray-400">/</span>
+    <span *ngIf="last" class="font-semibold text-gray-900">
+      {{ item.label }}
+    </span>
+  </li>
+</ol>

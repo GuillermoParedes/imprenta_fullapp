@@ -85,13 +85,10 @@ export class NewComponent {
     this.form.get('quantity')?.updateValueAndValidity();
   }
   onSubmit() {
-    console.log('onSUbmit', this.form)
-    console.log('onSUbmit', this.form.errors)
     if (this.form.invalid) {
       return;
     }
     this.form.get('totalAmount')?.enable();
-
     this.service.createPedidos({
       ...this.form.value,
     }).then(((response: any) => {

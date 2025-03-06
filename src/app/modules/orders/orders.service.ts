@@ -23,6 +23,8 @@ export class OrdersService {
   }
 
   updatePedido(id: string, editProduct: any) {
+    console.log('updatePedid', id)
+    console.log('updatePedid', editProduct)
     return lastValueFrom(this.httpService.patch(`${this.urlBase}/orders/${id}`, { ...editProduct }))
   }
 

@@ -18,10 +18,10 @@ Proyecto inicial para el trabajo final del instituto
 - [x] Validacion si el usuario esta logueado
 - [x] Modulo de inicio de sesion (login)
 - [x] Modulo de panel inicial
-- [ ] Modulo de clientes
-- [ ] Modulo de productos
-- [ ] Modulo de ordenes/pedidos
-- [ ] Modulo de reportes
+- [x] Modulo de clientes
+- [x] Modulo de productos
+- [x] Modulo de ordenes/pedidos
+- [x] Modulo de reportes
 
 #### Comandos
 

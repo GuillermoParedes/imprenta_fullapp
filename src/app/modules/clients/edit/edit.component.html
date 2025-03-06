@@ -1,12 +1,18 @@
-<!-- <app-table [header]="header" [data]="data"></app-table> -->
+<div class="mb-4 flex justify-between">
 
-<div class="mb-4 flex justify-items-end">
-    <app-button impact="bold" tone="primary" shape="rounded" size="medium" (click)="eliminarCliente()">Eliminar
-      cliente</app-button>
+  <nav class="bg-white shadow-sm px-6 py-3 rounded-lg flex items-center justify-between">
+    <!-- Breadcrumb Links -->
+    <app-breadcrumb [breadcrumbItems]="breadcrumbItems"></app-breadcrumb>
+    <!-- Actions (Edit & Delete) -->
 
-  <!-- </div> -->
+  </nav>
+  <div class="flex space-x-3">
+    <button class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-lg shadow"
+      (click)="eliminarCliente()">
+      Eliminar cliente
+    </button>
+  </div>
 </div>
-
 <div class="flex min-w-full flex-col rounded-xl border border-muted/20 bg-background p-2">
 
   <div class="overflow-x-auto">
