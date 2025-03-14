@@ -27,8 +27,8 @@ Proyecto inicial para el trabajo final del instituto
 
 ## PEDIDOS
 
-- [] En el modulo pedidos incrementar la fecha de pedido realizado Y LA FECHA DE ENTREGA(poner en el formulario de nuevo pedido, que también se muestre en los reportes de pedidos y se vea en la lista de pedidos )
-- [] También el total de adelanto entregado por el pedido que es del 20% o 50% y el resto a pagar tambien que se muestre en los reportes
+- [x] En el modulo pedidos incrementar la fecha de pedido realizado Y LA FECHA DE ENTREGA(poner en el formulario de nuevo pedido, que también se muestre en los reportes de pedidos y se vea en la lista de pedidos )
+- [x] También el total de adelanto entregado por el pedido que es del 20% o 50% y el resto a pagar tambien que se muestre en los reportes
 - [] Al registrar un nuevo pedido tiene el tipo de material(tipo de papel-opción desplegable) en el cual se realizara es pedido
 
 ## PRODUCTOS
