@@ -34,6 +34,7 @@ Proyecto inicial para el trabajo final del instituto
 ## PRODUCTOS
 
 - [] En listas de productos ordenar los productos por categorías y que se muestren las cantidades de los productos totales, restantes y vendidos
+- [x] En la lista de productos, se ordena por el mas reciente arriba
 
 ## REPORTES
 
