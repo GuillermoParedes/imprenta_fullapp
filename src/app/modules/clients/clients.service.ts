@@ -14,6 +14,10 @@ export class ClientsService {
     return lastValueFrom(this.httpService.get(`${this.urlBase}/clients`))
   }
 
+  getPedidos(id: string) {
+    return lastValueFrom(this.httpService.get(`${this.urlBase}/clients/${id}/orders`))
+  }
+
   createClients(newClient: any) {
     return lastValueFrom(this.httpService.post(`${this.urlBase}/clients`, { ...newClient }))
   }

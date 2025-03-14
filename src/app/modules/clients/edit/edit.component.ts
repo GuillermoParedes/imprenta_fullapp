@@ -1,5 +1,5 @@
-import { NgClass, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { DatePipe, NgClass, NgIf } from '@angular/common';
+import { Component, signal } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toast } from 'ngx-sonner';
@@ -10,7 +10,7 @@ import { BreadcrumbComponent } from 'src/app/shared/components/breadcrumb/breadc
 @Component({
   selector: 'app-edit',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf, ButtonComponent, BreadcrumbComponent],
+  imports: [FormsModule, ReactiveFormsModule, NgClass, NgIf, ButtonComponent, BreadcrumbComponent, DatePipe],
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.scss'
 })
@@ -23,6 +23,7 @@ export class EditComponent {
     { label: 'Lista de clientes', url: '/home/clients' },
     { label: 'Detalle' }
   ];
+  pedidos = signal<any>([])
   constructor(private readonly _formBuilder: FormBuilder, private readonly _router: Router,
     private readonly _route: ActivatedRoute,
     private service: ClientsService) { }
@@ -40,6 +41,7 @@ export class EditComponent {
     });
     if (this.clientId) {
       this.cargarCliente(this.clientId)
+
     }
   }
 
@@ -53,6 +55,11 @@ export class EditComponent {
         cellphone: response.cellphone,
         type: response.type,
       })
+    })
+    this.service.getPedidos(id).then((responses: any) => {
+      if (responses) {
+        this.pedidos.set(responses)
+      }
     })
   }
 

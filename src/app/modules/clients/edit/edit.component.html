@@ -12,97 +12,141 @@
       Eliminar cliente
     </button>
   </div>
+
 </div>
-<div class="flex min-w-full flex-col rounded-xl border border-muted/20 bg-background p-2">
+<div class="text-center">
+  <h2 class="mb-1 text-3xl font-semibold text-foreground">Editar <span class="text-primary">Cliente</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div>
+    <div class="overflow-x-auto">
+      <!-- login form -->
+      <form class="my-10 space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <div class="overflow-x-auto">
-    <!-- login form -->
-    <form class="my-10 space-y-6" [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="text-center">
-        <h2 class="mb-1 text-3xl font-semibold text-foreground">Editar <span class="text-primary">Cliente</span></h2>
-      </div>
 
-      <div class="space-y-3 text-left">
-        <div class="form__group">
-          <div class="relative">
-            <input type="text" id="first_name" [ngClass]="{ 'is__invalid-input': submitted && f['first_name'].errors }"
-              class="peer block" placeholder=" " formControlName="first_name" />
-            <label for="first_name"
-              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-              Nombre(s) de cliente
-            </label>
-          </div>
-          <div *ngIf="submitted && f['first_name'].errors" class="is__invalid-error">
-            <div *ngIf="f['first_name'].errors['required']">Campo requerido</div>
-          </div>
-        </div>
-
-        <div class="form__group">
-          <div class="relative">
-            <input type="text" id="last_name" [ngClass]="{ 'is__invalid-input': submitted && f['last_name'].errors }"
-              class="peer block" placeholder=" " formControlName="last_name" />
-            <label for="last_name"
-              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-              Apellido(s) de cliente
-            </label>
-          </div>
-          <div *ngIf="submitted && f['last_name'].errors" class="is__invalid-error">
-            <div *ngIf="f['last_name'].errors['required']">Campo requerido</div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="relative">
-            <input type="text" id="address" [ngClass]="{ 'is__invalid-input': submitted && f['address'].errors }"
-              class="peer block" placeholder=" " formControlName="address" />
-            <label for="address"
-              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-              direccion de cliente
-            </label>
-          </div>
-          <div *ngIf="submitted && f['address'].errors" class="is__invalid-error">
-            <div *ngIf="f['address'].errors['required']">Campo requerido</div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="relative">
-            <input type="text" id="cellphone" [ngClass]="{ 'is__invalid-input': submitted && f['cellphone'].errors }"
-              class="peer block" placeholder=" " formControlName="cellphone" />
-            <label for="cellphone"
-              class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
-              Celular de cliente
-            </label>
-          </div>
-          <div *ngIf="submitted && f['cellphone'].errors" class="is__invalid-error">
-            <div *ngIf="f['cellphone'].errors['required']">Campo requerido</div>
-          </div>
-        </div>
-        <div class="form__group">
-          <div class="relative">
-            <label class="text-sm text-muted-foreground">Tipo de cliente</label>
-            <div class="flex flex-col">
-              <label class="flex items-center">
-                <input type="radio" formControlName="type" value="NATURAL" class="mr-2" />
-                NATURAL
+        <div class="space-y-3 text-left">
+          <div class="form__group">
+            <div class="relative">
+              <input type="text" id="first_name"
+                [ngClass]="{ 'is__invalid-input': submitted && f['first_name'].errors }" class="peer block"
+                placeholder=" " formControlName="first_name" />
+              <label for="first_name"
+                class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+                Nombre(s) de cliente
               </label>
-              <label class="flex items-center">
-                <input type="radio" formControlName="type" value="JURIDICA" class="mr-2" />
-                JURIDICA
-              </label>
-
             </div>
-            <div *ngIf="submitted && f['type'].errors" class="is__invalid-error">
-              <div *ngIf="f['type'].errors['required']">Campo requerido</div>
+            <div *ngIf="submitted && f['first_name'].errors" class="is__invalid-error">
+              <div *ngIf="f['first_name'].errors['required']">Campo requerido</div>
             </div>
           </div>
+
+          <div class="form__group">
+            <div class="relative">
+              <input type="text" id="last_name" [ngClass]="{ 'is__invalid-input': submitted && f['last_name'].errors }"
+                class="peer block" placeholder=" " formControlName="last_name" />
+              <label for="last_name"
+                class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+                Apellido(s) de cliente
+              </label>
+            </div>
+            <div *ngIf="submitted && f['last_name'].errors" class="is__invalid-error">
+              <div *ngIf="f['last_name'].errors['required']">Campo requerido</div>
+            </div>
+          </div>
+          <div class="form__group">
+            <div class="relative">
+              <input type="text" id="address" [ngClass]="{ 'is__invalid-input': submitted && f['address'].errors }"
+                class="peer block" placeholder=" " formControlName="address" />
+              <label for="address"
+                class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+                direccion de cliente
+              </label>
+            </div>
+            <div *ngIf="submitted && f['address'].errors" class="is__invalid-error">
+              <div *ngIf="f['address'].errors['required']">Campo requerido</div>
+            </div>
+          </div>
+          <div class="form__group">
+            <div class="relative">
+              <input type="text" id="cellphone" [ngClass]="{ 'is__invalid-input': submitted && f['cellphone'].errors }"
+                class="peer block" placeholder=" " formControlName="cellphone" />
+              <label for="cellphone"
+                class="absolute top-2 left-1 z-10 origin-[0] -translate-y-4 scale-95 transform bg-background px-2 text-sm text-muted-foreground duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-95 peer-focus:px-2 peer-focus:text-primary">
+                Celular de cliente
+              </label>
+            </div>
+            <div *ngIf="submitted && f['cellphone'].errors" class="is__invalid-error">
+              <div *ngIf="f['cellphone'].errors['required']">Campo requerido</div>
+            </div>
+          </div>
+          <div class="form__group">
+            <div class="relative">
+              <label class="text-sm text-muted-foreground">Tipo de cliente</label>
+              <div class="flex flex-col">
+                <label class="flex items-center">
+                  <input type="radio" formControlName="type" value="NATURAL" class="mr-2" />
+                  NATURAL
+                </label>
+                <label class="flex items-center">
+                  <input type="radio" formControlName="type" value="JURIDICA" class="mr-2" />
+                  JURIDICA
+                </label>
+
+              </div>
+              <div *ngIf="submitted && f['type'].errors" class="is__invalid-error">
+                <div *ngIf="f['type'].errors['required']">Campo requerido</div>
+              </div>
+            </div>
+          </div>
+
         </div>
+        <div class="mb-2 flex items-center justify-between space-x-3">
+        </div>
+        <div>
+          <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Guardar cliente</app-button>
+        </div>
+      </form>
 
-      </div>
-      <div class="mb-2 flex items-center justify-between space-x-3">
-      </div>
-      <div>
-        <app-button full impact="bold" tone="primary" shape="rounded" size="medium">Guardar cliente</app-button>
-      </div>
-    </form>
-
+    </div>
   </div>
+
+  <div>
+    <h2 class="text-lg font-semibold text-gray-800 mb-3">📦 Ordenes Realizadas</h2>
+    <div class="rounded-xl border border-muted/20 bg-white p-4 shadow-md">
+      <div class="overflow-x-auto">
+        <table class="w-full table-auto border-collapse text-left align-middle leading-5 text-muted-foreground">
+          <thead class="border-b-2 border-muted/40 text-xs text-gray-600 uppercase">
+            <tr>
+              <th class="px-4 py-2">ESTADO</th>
+              <th class="px-4 py-2">FECHA DE ENTREGA</th>
+              <th class="px-4 py-2">PRODUCTO</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (pedido of pedidos(); track $index) {
+            <tr class="hover:bg-primary/10 cursor-pointer transition-all">
+              <td class="px-4 py-3 text-center">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold border" [ngClass]="{
+                                      'bg-yellow-100 text-yellow-800 border-yellow-400': pedido.status === 'PENDIENTE',
+                                      'bg-red-100 text-red-800 border-red-400': pedido.status === 'CANCELADO',
+                                      'bg-green-100 text-green-800 border-green-400': pedido.status === 'ENTREGADO',
+                                      'bg-gray-100 text-gray-800 border-gray-400': !['PENDIENTE', 'CANCELADO', 'ENTREGADO'].includes(pedido.status)
+                                    }">
+                  {{ pedido.status }}
+                </span>
+              </td>
+              <td class="px-4 py-3">{{ pedido.product.name }}</td>
+              <td class="px-4 py-3 text-center">{{ pedido.dateShipping | date:'dd/MM/yyyy' }}</td>
+            </tr>
+            } @empty {
+            <tr>
+              <td class="py-4 text-center text-sm text-gray-500" colspan="3">Sin ordenes para mostrar</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
 </div>

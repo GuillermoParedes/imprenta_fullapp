@@ -23,9 +23,31 @@ Proyecto inicial para el trabajo final del instituto
 - [x] Modulo de ordenes/pedidos
 - [x] Modulo de reportes
 
+### Nuevos requerimientos
+
+## PEDIDOS
+
+- [] En el modulo pedidos incrementar la fecha de pedido realizado Y LA FECHA DE ENTREGA(poner en el formulario de nuevo pedido, que también se muestre en los reportes de pedidos y se vea en la lista de pedidos )
+- [] También el total de adelanto entregado por el pedido que es del 20% o 50% y el resto a pagar tambien que se muestre en los reportes
+- [] Al registrar un nuevo pedido tiene el tipo de material(tipo de papel-opción desplegable) en el cual se realizara es pedido
+
+## PRODUCTOS
+
+- [] En listas de productos ordenar los productos por categorías y que se muestren las cantidades de los productos totales, restantes y vendidos
+
+## REPORTES
+
+- [] se podrá seleccionar que el reporte saque los reportes diaria, semanal o mensual a elección???
+- [] reporte de productos cantidad total , cantidad disponible en stock
+- [] reporte pedidos que se muestre todos los campos que se mue
+
+## CLIENTES
+
+- [] que tenga el tipo de pedido que realizo el cliente
+
 #### Comandos
 
-| comando                   | Que hace ?                                    |
-| ------------------------- | :-------------------------------------------- |
-| `npm start`               | Inicia el proyecto                            |
-| `npm run build`           | Prepara el proyecto, para el servidor         |
+| comando         | Que hace ?                            |
+| --------------- | :------------------------------------ |
+| `npm start`     | Inicia el proyecto                    |
+| `npm run build` | Prepara el proyecto, para el servidor |
