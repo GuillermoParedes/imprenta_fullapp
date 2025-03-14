@@ -32,7 +32,7 @@
 
         </select>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
           <label for="quantity" class="text-sm font-medium text-gray-700">Cantidad del Producto</label>
           <input type="number" id="quantity" formControlName="quantity"
@@ -49,7 +49,22 @@
 
         </div>
         <div>
-          <label for="totalAmount" class="text-sm font-medium text-gray-700">Total a Pagar</label>
+          <label for="advancePayment" class="text-sm font-medium text-gray-700">Adelanto [Bs.]</label>
+          <input type="number" id="advancePayment" formControlName="advancePayment"
+            class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary" />
+          <p *ngIf="f['advancePayment'].touched && f['advancePayment'].hasError('required')"
+            class="text-red-500 text-sm">
+            El adelanto es obligatorio.
+          </p>
+          <p *ngIf="f['advancePayment'].touched && f['advancePayment'].hasError('min')" class="text-red-500 text-sm">
+            El adelanto mínima es 1.
+          </p>
+          <p *ngIf="f['advancePayment'].touched && f['advancePayment'].hasError('max')" class="text-red-500 text-sm">
+            La cantidad no puede ser mayor al total a pagar en Bolivianos
+          </p>
+        </div>
+        <div>
+          <label for="totalAmount" class="text-sm font-medium text-gray-700">Total a Pagar [Bs.]</label>
           <input type="number" id="totalAmount" formControlName="totalAmount"
             class="w-full rounded-lg border border-gray-300 p-3 focus:ring-2 focus:ring-primary" />
         </div>

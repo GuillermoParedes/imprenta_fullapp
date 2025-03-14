@@ -43,7 +43,7 @@ Proyecto inicial para el trabajo final del instituto
 
 ## CLIENTES
 
-- [] que tenga el tipo de pedido que realizo el cliente
+- [x] que tenga el tipo de pedido que realizo el cliente
 
 #### Comandos
 

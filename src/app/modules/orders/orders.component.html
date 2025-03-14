@@ -21,9 +21,11 @@
           <tr>
             <th class="px-4 py-3">Nombre de Cliente</th>
             <th class="px-4 py-3">Producto</th>
-            <th class="px-4 py-3 text-right">Total a Pagar</th>
+            <th class="px-4 py-3 text-right">Total a Pagar [Bs.]</th>
+            <th class="px-4 py-3 text-right">Adelanto [Bs.]</th>
             <th class="px-4 py-3 text-center">Cantidad</th>
             <th class="px-4 py-3 text-center">Estado</th>
+            <th class="px-4 py-3 text-center">Fecha de Pedido</th>
             <th class="px-4 py-3 text-center">Fecha de Entrega</th>
           </tr>
         </thead>
@@ -33,7 +35,18 @@
             (click)="editarPedido(pedido)">
             <td class="px-4 py-3">{{ pedido.customer.first_name }} {{ pedido.customer.last_name }}</td>
             <td class="px-4 py-3">{{ pedido.product.name }}</td>
-            <td class="px-4 py-3 text-right font-medium text-primary">{{ pedido.totalAmount }}</td>
+            <td class="px-4 py-3 text-right font-medium text-green-800">{{ pedido.totalAmount }}</td>
+            @if(pedido.status == 'ENTREGADO') {
+            <td class="px-4 py-3 text-right font-medium text-green-800">{{ pedido.totalAmount }}</td>
+            } @else if (pedido.status == 'CANCELADO') {
+            <td class="px-4 py-3 text-right font-medium text-green-800"> Se regreso el adelanto de
+              {{pedido.advancePayment}}
+            </td>
+            } @else {
+            <td class="px-4 py-3 text-right font-medium text-green-800">{{ pedido.advancePayment }}</td>
+            }
+
+
             <td class="px-4 py-3 text-center">{{ pedido.quantity }}</td>
             <td class="px-4 py-3 text-center">
               <span class="px-3 py-1 rounded-full text-xs font-semibold border" [ngClass]="{
@@ -45,7 +58,13 @@
                 {{ pedido.status }}
               </span>
             </td>
+            <td class="px-4 py-3 text-center">{{ pedido.createdAt | date:'dd/MM/yyyy' }}</td>
+            @if(pedido.status == 'ENTREGADO' || pedido.status == 'CANCELADO') {
             <td class="px-4 py-3 text-center">{{ pedido.dateShipping | date:'dd/MM/yyyy' }}</td>
+            } @else {
+            <td class="px-4 py-3 text-center">-</td>
+            }
+
           </tr>
           } @empty {
           <tr>

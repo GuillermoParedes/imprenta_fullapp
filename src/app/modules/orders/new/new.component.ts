@@ -31,6 +31,7 @@ export class NewComponent {
       dateShipping: ['', [Validators.required]],
       productId: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
+      advancePayment: [{ value: 0 }],
       totalAmount: [{ value: 0, disabled: true }]
     });
 
@@ -51,7 +52,8 @@ export class NewComponent {
     this.form.get('quantity')?.valueChanges.pipe(
       distinctUntilChanged()
     ).subscribe((value) => {
-      this.calcularTotalAPagar()
+      this.calcularTotalAPagar();
+      this.calcularAdelantoMaximo();
     });
   }
 
@@ -80,9 +82,18 @@ export class NewComponent {
     const _quantity = this.form.get('quantity')?.value;
     const _product = this.form.get('productId')?.value;
     const _productValue = this.products().find((response: any) => response.id == _product)
-    const _totalAmount = (_productValue.sellingPrice ?? 0) * (_quantity ?? 0)
+    const _totalAmount = Math.round((_productValue.sellingPrice ?? 0) * (_quantity ?? 0))
     this.form.get('totalAmount')?.setValue(_totalAmount)
     this.form.get('quantity')?.updateValueAndValidity();
+  }
+  calcularAdelantoMaximo() {
+    const _totalAmount = this.form.get('totalAmount')?.value;
+    this.form.get('advancePayment')?.setValidators([
+      Validators.required,
+      Validators.min(1),
+      Validators.max(_totalAmount)
+    ]);
+    this.form.get('advancePayment')?.updateValueAndValidity();
   }
   onSubmit() {
     if (this.form.invalid) {
