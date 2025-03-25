@@ -17,17 +17,18 @@ interface IReports {
   styleUrl: './reports.component.scss'
 })
 export class ReportsComponent {
-  
+
   startDate: string = "";
   endDate: string = "";
-  
+
   listReports = [
     { title: 'Resumen de Clientes - Naturales', description: 'Datos sobre nuevos y antiguos clientes.', url: 'http://localhost:3000/reports/summary-clients-natural' },
     { title: 'Resumen de Clientes - Juridicos', description: 'Datos sobre nuevos y antiguos clientes.', url: 'http://localhost:3000/reports/summary-clients-juridica' },
     { title: 'Stock de Productos', description: 'Datos sobre la cantidad de productos actuales.', url: 'http://localhost:3000/reports/stock-products' },
-    { title: 'Pedidos Entregados', description: 'Datos de los pedidos.', url: 'http://localhost:3000/reports/orders', params: { status: 'ENTREGADO'} },
-    { title: 'Pedidos Cancelados', description: 'Datos de los pedidos.', url: 'http://localhost:3000/reports/orders', params: { status: 'CANCELADO'} },
-    { title: 'Pedidos Pendientes', description: 'Datos de los pedidos.', url: 'http://localhost:3000/reports/orders', params: { status: 'PENDIENTE'} },
+    { title: 'Pedidos Entregados', description: 'Datos de los pedidos.', url: 'http://localhost:3000/reports/orders', params: { status: 'ENTREGADO' } },
+    { title: 'Pedidos Cancelados', description: 'Datos de los pedidos.', url: 'http://localhost:3000/reports/orders', params: { status: 'CANCELADO' } },
+    { title: 'Pedidos Pendientes', description: 'Datos de los pedidos.', url: 'http://localhost:3000/reports/orders', params: { status: 'PENDIENTE' } },
+    { title: 'Total Ingresos', description: 'Ingresos realizados, tanto de pedidos pendientes y entregados.', url: 'http://localhost:3000/reports/revenue' },
   ]
 
   reports = signal<Array<IReports>>([]);
@@ -49,7 +50,7 @@ export class ReportsComponent {
         }
       }))
     }, 600)
-    
+
   }
 
   getReportUrl(report: IReports): void {
@@ -59,13 +60,13 @@ export class ReportsComponent {
       endDate: report.params.endDate,
       status: report.params.status
     }).toString();
-    
+
     const url = `${report.url}?${queryParams}`;
 
     let nameReport = report.title;
     if (report.params.startDate && report.params.endDate) {
       nameReport = `${report.title} - ${report.params.startDate} : ${report.params.endDate}`;
-    } else if(report.params.startDate) {
+    } else if (report.params.startDate) {
       nameReport = `${report.title} - ${report.params.startDate}`;
     } else if (report.params.endDate) {
       nameReport = `${report.title} - ${report.params.endDate}`;
@@ -75,11 +76,11 @@ export class ReportsComponent {
       const a = document.createElement('a');
       const objectUrl = URL.createObjectURL(blob);
       a.href = objectUrl;
-      a.download = `${nameReport}`; // Cambia la extensión si es necesario
+      a.download = `${nameReport}.pdf`; // Cambia la extensión si es necesario
       a.click();
       URL.revokeObjectURL(objectUrl);
     });
-    
+
   }
 
 }
