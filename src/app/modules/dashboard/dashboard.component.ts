@@ -8,6 +8,7 @@ import {
   ApexXAxis, NgApexchartsModule
 } from 'ng-apexcharts';
 import { DashboardService } from './dashboard.service';
+import { CommonModule } from '@angular/common';
 
 interface IBarChart {
   series: { name: string; data: number[] }[];
@@ -25,7 +26,7 @@ interface IPieChart {
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   standalone: true,
-  imports: [NgApexchartsModule],
+  imports: [NgApexchartsModule, CommonModule],
 })
 export class DashboardComponent implements OnInit {
   clientesCount = 90;
@@ -88,6 +89,7 @@ export class DashboardComponent implements OnInit {
     colors: ['#F44336']
   };
   dashboardService = inject(DashboardService)
+  resumen: any = {};
   constructor(private readonly clientService: ClientsService, private readonly productsService: ProductsService, private readonly pedidosService: OrdersService) { }
 
   ngOnInit(): void {
@@ -101,7 +103,9 @@ export class DashboardComponent implements OnInit {
     this.pedidosService.getPedidos().then((response: any) => {
       this.pedidosCount = response.length
     })
-
+    this.pedidosService.getRevenue().then((response: any) => {
+      this.resumen = response;
+    })
     this.dashboardService.getStockProducts().then((response: any) => {
       console.log('response', response)
       if (response) {

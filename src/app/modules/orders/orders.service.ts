@@ -31,4 +31,8 @@ export class OrdersService {
   deletePedido(id: string) {
     return lastValueFrom(this.httpService.delete(`${this.urlBase}/orders/${id}`))
   }
+
+  getRevenue() {
+    return lastValueFrom(this.httpService.get(`${this.urlBase}/orders/revenue/day`))
+  }
 }

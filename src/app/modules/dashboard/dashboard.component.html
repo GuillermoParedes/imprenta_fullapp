@@ -1,5 +1,37 @@
 <div class="p-6">
-    <h1 class="text-3xl font-bold text-gray-900 mb-6">📊 Dashboard de Ventas</h1>
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">📊 Dashboard de la aplicacion</h1>
+    <!-- Resumen de Pedidos -->
+    @if(resumen) {
+    <div class="md:col-span-3 grid grid-cols-1 md:grid-cols-4 gap-4 mb-2">
+        <!-- Entregados hasta hoy -->
+        <div class="bg-white shadow-lg rounded-lg p-4 text-center">
+            <h4 class="text-sm font-semibold text-gray-500">Entregados hasta hoy</h4>
+            <p class="text-2xl font-bold text-green-600">{{ resumen.untilToday.done.count }}</p>
+            <p class="text-sm text-gray-700">Bs. {{ resumen.untilToday.done.money | number:'1.2-2' }}</p>
+        </div>
+
+        <!-- Pendientes hasta hoy -->
+        <div class="bg-white shadow-lg rounded-lg p-4 text-center">
+            <h4 class="text-sm font-semibold text-gray-500">Pendientes hasta hoy</h4>
+            <p class="text-2xl font-bold text-red-500">{{ resumen.untilToday.pending.count }}</p>
+            <p class="text-sm text-gray-700">Bs. {{ resumen.untilToday.pending.money | number:'1.2-2' }}</p>
+        </div>
+
+        <!-- Entregados hoy -->
+        <div class="bg-white shadow-lg rounded-lg p-4 text-center">
+            <h4 class="text-sm font-semibold text-gray-500">Entregados hoy</h4>
+            <p class="text-2xl font-bold text-green-400">{{ resumen.today.done.count }}</p>
+            <p class="text-sm text-gray-700">Bs. {{ resumen.today.done.money | number:'1.2-2' }}</p>
+        </div>
+
+        <!-- Pendientes hoy -->
+        <div class="bg-white shadow-lg rounded-lg p-4 text-center">
+            <h4 class="text-sm font-semibold text-gray-500">Pendientes hoy</h4>
+            <p class="text-2xl font-bold text-red-400">{{ resumen.today.pending.count }}</p>
+            <p class="text-sm text-gray-700">Bs. {{ resumen.today.pending.money | number:'1.2-2' }}</p>
+        </div>
+    </div>
+    }
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-auto grid-auto-flow-dense">
         <!-- Contadores (Clientes, Productos, Pedidos) -->
